@@ -1,0 +1,196 @@
+// IMPORTS
+@use 'partials/variables';
+@use 'partials/header';
+@use 'partials/form';
+
+// MIXINS
+@mixin alerts($alertColor: DarkGray) {
+    background: $alertColor;
+    padding: 5px;
+    font-size: 1.5rem;
+    border-radius: 6px;
+    text-align: center;
+    height: 50px;
+    box-shadow: 0 0 1px rgba($color: $alertColor, $alpha: .5);
+    color: #fff;
+    margin: 10px;
+}
+
+@mixin heading($size) {
+    @if $size ==large {
+        font-size: 4rem;
+    }
+
+    @else if $size ==medium {
+        font-size: 2rem;
+    }
+
+    @else if $size ==small {
+        font-size: 1rem;
+    }
+
+    @else {
+        font-size: .7rem;
+    }
+}
+
+
+// FUNCTIONS
+@function add-numbers($first-number, $second-number){
+    @return $first-number + $second-number;
+}
+
+
+
+// PLACEHOLDERS
+%size-placeholder {
+    height: 100vh;
+    width: 100vw;
+}
+
+%spacing-placeholder {
+    margin: 0;
+    padding: 0;
+}
+
+
+// BASE STYLE 
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    @extend %size-placeholder;
+}
+
+body {
+    @extend %spacing-placeholder;
+    display: grid;
+    place-items: center;
+    background: variables.$light-gray;
+    font-family: variables.$g-font-family;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+// .alert-1 {
+//     @include alerts;
+// }
+
+// .alert-2 {
+//     @include alerts(DarkRed);
+// }
+
+// .alert-3 {
+//     @include alerts(DarkGreen);
+// }
+
+// .alert-4 {
+//     @include alerts(orangered);
+// }
+
+// FOR LOOP
+@for $i from 1 through 4 {
+    @if $i ==1 {
+        .alert-#{$i} {
+            margin-top: 20%;
+            @include alerts;
+        }
+    }
+
+    @else {
+        .alert-#{$i} {
+            @include alerts(nth(variables.$color-list, $i));
+        }
+    }
+}
+
+.lists {
+    p.large {
+        @include heading(large);
+    }
+
+    p.medium {
+        @include heading(medium);
+    }
+
+    p.small {
+        @include heading(small);
+    }
+}
+
+
+// WHILE LOOP
+.boxes {
+    content: "";
+    clear: both;
+    display: table;
+    text-align: center;
+    @include heading(large);
+    color: #fff;
+
+    // .box-1 {
+    //     float: left;
+    //     background-color: #333;
+    //     width: 200px;
+    //     border: 15px solid #222;
+    //     padding: 50px;
+    //     margin: 20px;
+    // }
+
+    $i: 1;
+    @while $i < 7 {
+        .box-#{$i} {
+            float: left;
+            background-color: #333;
+            width: add-numbers(150px, 150px);
+            border: 15px solid #222;
+            padding: 50px;
+            margin: 20px;
+
+            &:hover {
+                cursor: pointer;
+                border: 15px solid #333;
+            }
+        }
+        $i: $i + 1;
+    }
+}
+
+// INHERITACE
+.buttons {
+    .primary-button {
+        width: 40%;
+        border-radius: 6px;
+        text-align: center;
+        padding: 10px;
+        margin: 10px 0 50px 0;
+        border: 1px solid #ccc;
+        color: #fff;
+        cursor: pointer;
+        background: #333;
+        box-shadow: 0 0 1px rgba($color: #333, $alpha: .5);
+        @include heading(large);
+
+        &:hover {
+            background: #444;
+        }
+    }
+    .secondary-button {
+        @extend .primary-button;
+        background: DarkGreen;
+    }
+}
+
+
+
+
+
+
+
+
+
+

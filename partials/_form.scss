@@ -1,0 +1,56 @@
+
+// FORM STYLE
+
+
+.container {
+    padding: 10%;
+    border: 1px solid #333;
+    border-radius: 25px;
+    margin: 10% 20%;
+    background: #f6f5f5;
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    fieldset {
+        border-radius: 25px;
+        padding: 5%;
+        border: #333 solid 2px;
+    }
+
+    input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 10%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0 50px 0;
+        border: 1px solid #ccc;
+        color: #fff;
+        cursor: pointer;
+        background: #333;
+
+        &:hover {
+            background: #444;
+        }
+    }
+
+    .secondary-button {
+        @extend button;
+        background-color: #4CAF50;
+    }
+
+    p span {
+        color: rgb(163, 109, 38);
+        font-weight: 600;
+    } 
+}
+
+
